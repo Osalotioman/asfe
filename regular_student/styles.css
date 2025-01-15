@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Prevent scrolling and set body to flex container */
+body {
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    font-family: "Inter", serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ddd;
+    height: 100px;
+    background-color: #333;
+    color: white;
+}
+
+/* Table Container */
+main {
+    flex: 1; /* Allows main content to grow and shrink */
+    overflow: auto; /* Ensures scrollability for overflowing content */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.2rem;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Table Header Styles */
+thead {
+    & tr {
+        height: 50px;
+    }
+    & th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: #f0f0f0;
+        color: #333;
+        padding: 12px;
+        border-bottom: 2px solid #ddd;
+    }
+}
+
+/* Table Rows Styles */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* Table Cell Styles */
+td {
+    padding: 12px;
+    border: none;
+    white-space: nowrap;
+}
+
+tr td:first-child, tr th:first-child {
+    border-right: 2px solid #ddd;
+}
+
+/* General Styles */
+footer {
+    width: 100%;
+    background-color: #333;
+    box-shadow: 0 -1px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+ul {
+    width: 100%;
+    padding: 14px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style-type: none;
+}
+
+ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    text-decoration: none;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+ul li a.active {
+    background-color: #007bff; /* Highlight color for active tab */
+    fill: #fff; /* SVG icon color */
+}
+
+ul li a svg {
+    fill: #e8eaed; /* Default SVG icon color */
+    width: 32px;
+    height: 32px;
+    transition: fill 0.3s ease;
+}
+/* Footer Styles 
+footer {
+    width: 100%;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-top: 1px solid #ddd;
+}
+
+ Footer Icons 
+ul {
+    width: 100%;
+    height: 100%;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+li {
+    padding: 14px;
+}
+li svg {
+    fill: #333;
+    width: 40px;
+    height: 40px;
+}
+
+li a {
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+}
+
+li:has(a:active), li:has(a:hover) {
+    border-bottom: 4px solid #33abff;
+    svg {
+        fill: #33baff;
+    }
+}
+*/
+/* Floating Action Button (FAB) */
+.fab {
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+    background-color: #333;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+/* Floating Action Button Icon */
+.fab svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+}
+
+#qr-code {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 500px;
+    border-radius: 32px 32px 0 0;
+    z-index: 10;
+    bottom: -500px;
+    position: fixed;
+    background-color: #fff;
+    transition: bottom 0.3s ease-in-out;
+
+    & img {
+        width: 300px;
+        height: 300px;
+        margin-bottom: 10px;
+    }
+
+    & button {
+        position: absolute; /* Absolute positioning for top-right alignment */
+        top: 24px;
+        right: 24px;
+        width: 24px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        font-size: 24px; /* Adjust size to fit icon */
+        cursor: pointer; /* Makes the "X" clickable */
+        color: #333; /* Adjust icon color */
+    }
+}
+
+#qr-code.open {
+    bottom: 0;
+}
+
+#overlay {
+    /*background-color: rgba(0,0,0,0.5);*/
+    z-index: 9;
+    inset: 0;
+    position: fixed;
+    backdrop-filter: blur(2px) brightness(0.5);
+    display: none;
+}
+
+#qr-code.open ~ #overlay {
+    display: block;
+}
