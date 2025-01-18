@@ -1,6 +1,25 @@
-import { Slot } from "expo-router";
-
-// Import your global CSS file
+import { SplashScreen, Stack } from "expo-router";
 import "../global.css";
+import { useFonts } from "expo-font";
+import { useEffect } from "react";
 
-export default Slot;
+SplashScreen.preventAutoHideAsync();
+
+export default function RootLayout() {
+    const [fontsLoaded, error] = useFonts({
+        "Inter": require("../assets/fonts/Inter-VariableFont_opsz,wght.ttf")
+    })
+
+    useEffect(() => {
+        if (error) throw error;
+        if (fontsLoaded) SplashScreen.hideAsync();
+    }, [fontsLoaded, error])
+
+    if (!fontsLoaded && !error) return null;
+
+    return (
+        <Stack>
+            <Stack.Screen name="index" options={{headerShown: false}}/>
+        </Stack>
+    )
+}
