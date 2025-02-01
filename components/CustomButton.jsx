@@ -1,12 +1,5 @@
 import { TouchableOpacity, Text } from "react-native";
 
-interface CustomButtonProps {
-  title: string; // Title text for the button
-  handlePress: () => void; // Function to handle button press
-  textStyles?: string; // Optional text styling (Tailwind classes)
-  containerStyles?: string; // Optional container styling (Tailwind classes)
-  isLoading?: boolean; // Optional loading state
-}
 
 export default function CustomButton({
   title,
@@ -14,7 +7,7 @@ export default function CustomButton({
   textStyles = "",
   containerStyles = "",
   isLoading = false,
-}: CustomButtonProps) {
+}) {
   return (
     <TouchableOpacity
       onPress={handlePress}

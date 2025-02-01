@@ -14,18 +14,14 @@ export default function App() {
         >
             <ScrollView contentContainerStyle={{height: '100%'}}>
                 <View
-                    className='items-center justify-center px-4'
-                    style={{
-                        height: '85vh',
-                        width: '100%',
-                    }}
+                    className='items-center justify-center px-4 my-6 w-full min-h-[85vh]'
                 >
                     <Image
                       source={images.uniben_logo}
                       resizeMode="contain"
                       style={{
-                        width: 150,
-                        height: 150,
+                        width: 100,
+                        height: 100,
                       }}
                     />
 
@@ -45,7 +41,7 @@ export default function App() {
                     <CustomButton
                         title='Get Started'
                         handlePress={() => router.push('/events')}
-                        containerStyles='w-full'
+                        containerStyles='w-full mt-4'
                         textStyles='font-semibold'
                     />
                 </View>
