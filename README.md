@@ -71,9 +71,9 @@ Attendance System is an initiative by a group of students from the University of
 Refer to the [Database Schema](./docs/DatabaseSchema.md) for more details on the data structure.  
 
 ## The team
-1. Ighalo Genesis Osasenaga - Computer Science (@daves-hub)
-2. Osazuwa Osalotioman - Mathematics (@Osalotioman)
-3. Oluwadamilare Samuel - Computer Science (@Samuel-crypto101)
+1. Ighalo Osasenaga - Computer Science [@daves-hub](https://github.com/daves-hub).
+2. Osazuwa Osalotioman - Mathematics [@Osalotioman](https://github.com/Osalotioman).
+3. Oluwadamilare Samuel - Computer Science [@Samuel-crypto101](https://github.com/Samuel-crypto101).
 
 ## Contributions  
 We welcome contributions to improve the project. Please follow the contribution guidelines in the `CONTRIBUTING.md` file.  
