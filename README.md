@@ -1,50 +1,85 @@
-# Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# Welcome to Attendance System  
 
-## Get started
+## Introduction  
+Attendance System is an initiative by a group of students from the University of Benin. It was born out of the need to make attendance records meaningful and reliable. The system provides a dynamic and secure way for lecturers to manage attendance efficiently while reducing the chances of unauthorized sign-ins.  
 
-1. Install dependencies
+## Key Features  
+- **Dynamic Attendance Management:**  
+  Lecturers have full control over attendance sessions, including starting, closing, and nullifying attendance.  
 
+- **Secure Attendance Sign-In:**  
+  The system supports QR code-based attendance verification and biometric data storage for secure record-keeping.  
+
+- **Role-Based Access:**  
+  Different roles with distinct permissions:
+  - **Lecturers:** Ultimate control over attendance sessions.
+  - **Course Reps:** Responsible for logging attendance records.
+  - **Regular Students:** Sign in for attendance sessions.
+  - **Temporary Attendance Takers:** Appointed by lecturers when necessary.  
+
+- **Time-Limited Sessions:**  
+  Lecturers can set time limits for attendance sessions. After the time expires, attendance becomes read-only.  
+
+- **Notification System:**  
+  Users receive real-time notifications for attendance requests and updates.  
+
+- **Permanent Logins for Students:**  
+  Students stay signed in after registration, reducing the need for repeated logins.  
+
+- **Data Privacy:**  
+  Sensitive information like biometric data is encrypted for enhanced security.  
+
+## Installation  
+
+### Prerequisites  
+- Node.js  
+- React Native CLI  
+- PostgreSQL (for the database)  
+- A mobile device or emulator  
+
+### Getting Started  
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo-url/attendance-system.git
+   cd attendance-system
+   ```
+
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Start the app
+3. Set up environment variables:  
+   **SKIP**: *NOT YET AVAILABLE*
 
+4. Run the application:
    ```bash
-    npx expo start
+   npm start
    ```
 
-In the output, you'll find options to open the app in a
+## Usage  
+- Lecturers can request attendance, manage attendance records, and authorize temporary attendance takers.  
+- Course reps and authorized users can take attendance by scanning QR codes.  
+- Students can generate QR codes for attendance sign-in.  
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Project Structure  
+**COMING SOON**
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Database Schema  
+Refer to the [Database Schema](./docs/DatabaseSchema.md) for more details on the data structure.  
 
-## Get a fresh project
+## The team
+1. Ighalo Genesis Osasenaga - Computer Science (@daves-hub)
+2. Osazuwa Osalotioman - Mathematics (@Osalotioman)
+3. Oluwadamilare Samuel - Computer Science (@Samuel-crypto101)
 
-When you're ready, run:
+## Contributions  
+We welcome contributions to improve the project. Please follow the contribution guidelines in the `CONTRIBUTING.md` file.  
 
-```bash
-npm run reset-project
-```
+## License  
+This project is licensed under the GNU General Public License (GPL v3).  
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Contact  
+For any inquiries or feedback, please contact [ighalogenesis2007@gmail.com](ighalogenesis2007@gmail.com).
