@@ -1,40 +1,61 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
+import CustomButton from '../../components/CustomButton';
+import FormField from '../../components/FormField';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import image from '../../constants/images';
+import { useState } from 'react';
+import { Link } from 'expo-router';
 
 const SignIn = () => {
+    const [form, setForm] = useState({ email: "", password: "" });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const submitForm = () => {};
+
     return (
-        <View className="flex-1 justify-center items-center bg-gray-100">
-            <View className="bg-white p-5 rounded-lg shadow-lg w-11/12 max-w-md">
-                <Text className="text-2xl font-bold mb-5 text-center">Sign In</Text>
-                <View className="w-full">
-                    <View className="mb-4">
-                        <Text className="text-sm font-bold text-gray-700 mb-2">Username</Text>
-                        <TextInput
-                            className="h-10 border border-gray-300 rounded px-3 bg-white"
-                            placeholder='Enter your username'
-                            keyboardType='text'
-                            autoCapitalize="none"
-                        />
-                    </View>
-                    <View className="mb-4">
-                        <Text className="text-sm font-bold text-gray-700 mb-2">Password</Text>
-                        <TextInput
-                            className="h-10 border border-gray-300 rounded px-3 bg-white"
-                            placeholder="Enter your password"
-                            secureTextEntry
-                        />
-                    </View>
-                    <View className="flex-row justify-between items-center">
-                        <TouchableOpacity className="bg-blue-500 py-2 px-4 rounded">
-                            <Text className="text-white font-bold">Sign In</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Text className="text-blue-500 font-bold">Forgot Password?</Text>
-                        </TouchableOpacity>
+        <SafeAreaView className="bg-white h-full">
+            <ScrollView>
+                <View className="w-full justify-center min-h-[85vh] px-5 my-6">
+                    <Image
+                        source={image.dsars_logo}
+                        resizeMode="contain"
+                        style={{
+                            width: 100,
+                            height: 100,
+                        }}
+                    />
+                    <Text className="text-2xl font-bold mb-7">Sign In to Attendance System</Text>
+                    <FormField 
+                        value={form.email} 
+                        placeholder="Enter your email" 
+                        label="Email"
+                        handleChangeText={(text) => setForm({ ...form, email: text })}
+                        otherStyles="mb-7"
+                    />
+                    <FormField
+                        value={form.password}
+                        placeholder="Enter your password"
+                        label="Password"
+                        secureTextEntry={true}
+                        handleChangeText={(text) => setForm({ ...form, password: text })}
+                        otherStyles="mb-7"
+                    />
+                    <CustomButton
+                        title="Sign In"
+                        handlePress={submitForm}
+                        isLoading={isSubmitting}
+                    />
+
+                    <View className="mt-5 flex flex-row justify-between">
+                        <Text className="text-md">Don't have an account?</Text>
+                        <Link href="/sign-up">
+                            <Text className="text-md text-blue-500">Sign Up</Text>
+                        </Link>
                     </View>
                 </View>
-            </View>
-        </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 };
 
