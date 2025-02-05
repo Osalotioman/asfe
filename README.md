@@ -42,7 +42,7 @@ Attendance System is an initiative by a group of students from the University of
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo-url/attendance-system.git
+   git clone https://github.com/Osalotioman/attendance_system_frontend.git
    cd attendance-system
    ```
 
