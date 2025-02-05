@@ -9,10 +9,10 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 export default function MyTabBar({ state, descriptors, navigation}) {
     const { buildHref } = useLinkBuilder();
     const icons = {
-      events: (props) => <FontAwesome6 name="rectangle-list" size={24} color="#ddd" {...props} />,
-      timetable: (props) => <MaterialCommunityIcons name="timetable" size={24} color="#ddd" {...props} />,
-      metrics: (props) => <MaterialIcons name="insert-chart-outlined" size={24} color="#ddd" {...props} />,
-      profile: (props) => <MaterialCommunityIcons name="account-circle-outline" size={24} color="#ddd" {...props} />,
+      events: (props) => <FontAwesome6 name="rectangle-list" size={32} color="#ddd" {...props} />,
+      timetable: (props) => <MaterialCommunityIcons name="timetable" size={32} color="#ddd" {...props} />,
+      metrics: (props) => <MaterialIcons name="insert-chart-outlined" size={32} color="#ddd" {...props} />,
+      profile: (props) => <MaterialCommunityIcons name="account-circle-outline" size={32} color="#ddd" {...props} />,
     }
 
     return (
@@ -74,8 +74,7 @@ const styles = StyleSheet.create({
     tabBar: {
       flexDirection: 'row',
       backgroundColor: '#333',
-      paddingTop: 10,
-      paddingBottom: 5,
+      paddingVertical: 18,
       paddingHorizontal: 10,
       justifyContent: 'space-between',
       borderTopWidth: 1,
@@ -85,8 +84,8 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      paddingVertical: 5,
       fontFamily: 'inter',
-      fontSize: 12,
+      fontSize: 10,
+      gap: 6,
     },
 });
