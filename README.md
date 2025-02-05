@@ -84,22 +84,3 @@ This project is licensed under the GNU General Public License (GPL v3).
 
 ## Contact  
 For any inquiries or feedback, please contact [ighalogenesis2007@gmail.com](ighalogenesis2007@gmail.com).
-
-
-## For branching and pull request the following template can be helpful when working from the terminal
-```
-# 1. Check status
-git status
-
-# 2. Create and switch to a new branch
-git checkout -b <new-branch-name>
-
-# 3. Stage all changes
-git add .
-
-# 4. Commit the changes
-git commit -m "Your commit message"
-
-# 5. Push the new branch to GitHub
-git push origin <new-branch-name>
-```
