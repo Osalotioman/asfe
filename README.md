@@ -77,6 +77,7 @@ Refer to the [Database Schema](./docs/DatabaseSchema.md) for more details on the
 4. Samuel Godspraise Otitochukwu - Computer Science [@Sbog304](https://github.com/Sbog304)
 5. Erewa Victor Oritsesholaye - Computer Science [@NeoVoidPlus](https://github.com/NeoVoidPlus)
 6. Onwumaeze Wisdom Chijindu - Computer Science [@wisdomdaniel](https://github.com/wisdomdaniel)
+7. Ireoluwa Wisdom Olukayode - Mechatronics Engineering [IreoluwaWisdom] (https://github.com/ireoluwawisdom)
 ## Contributions  
 We welcome contributions to improve the project. Please follow the contribution guidelines in the `CONTRIBUTING.md` file.  
 
