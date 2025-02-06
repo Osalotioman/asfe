@@ -56,7 +56,7 @@ Attendance System is an initiative by a group of students from the University of
 
 4. Run the application:
    ```bash
-   npm start
+   npm run web
    ```
 
 ## Usage  
