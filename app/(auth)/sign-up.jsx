@@ -29,7 +29,7 @@ const SignUp = () => {
         { label: "Department", name: "department", placeholder: "Enter your department", secureTextEntry: false },
         { label: "Faculty", name: "faculty", placeholder: "Enter your faculty", secureTextEntry: false },
         { label: "Phone Number", name: "phoneNumber", placeholder: "Enter your phone number", secureTextEntry: false },
-        { label: "Gender", name: "gender", placeholder: "Select your gender", secureTextEntry: false }
+        { label: "Gender", name: "gender", placeholder: "Select your gender", secureTextEntry: false, selectOptions: [{ label: 'Male', value: 'male' }, { label: 'Female', value: 'female' }] }
     ];
 
     const submitForm = () => {
@@ -58,6 +58,7 @@ const SignUp = () => {
                             placeholder={field.placeholder}
                             label={field.label}
                             secureTextEntry={field.secureTextEntry}
+                            selectOptions={field.selectOptions}
                             handleChangeText={(text) => setForm({ ...form, [field.name]: text })}
                             otherStyles="mb-7"
                         />
