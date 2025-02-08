@@ -22,14 +22,6 @@ body:
     validations:
       required: true
   - type: textarea
-    id: alternatives
-    attributes:
-      label: "Alternatives"
-      description: Please describe any alternative solutions or features you've considered.
-      placeholder: Description of alternative solutions...
-    validations:
-      required: false
-  - type: textarea
     id: additional_context
     attributes:
       label: "Additional Context"
