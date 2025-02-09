@@ -107,3 +107,13 @@ git commit -m "Your commit message"
 # 5. Push the new branch to GitHub
 git push origin <new-branch-name>
 ```
+```
+# 1. Copy the example environment file to create your own .env file
+cp .example.env .env
+
+# 2. Open the .env file and fill in the required fields
+# (e.g., API_URL, API_KEY, etc.)
+
+# 3. Install project dependencies
+npm install
+```
