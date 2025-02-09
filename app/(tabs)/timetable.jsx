@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import Timetable from '../../components/Timetable';
+import Timetable from '../../components/TimetableComponent';
 import { getTimetableData } from '../../api/auth';
 
 export default function TimetableScreen() {
@@ -32,7 +32,6 @@ export default function TimetableScreen() {
     return (
         <ScrollView className=' flex-1'>
             <View className='p-4'>
-                <Text className='text-secondary text-2xl font-inter mb-4'>Timetable</Text>
                 <Timetable schedule={schedule} />
             </View>
         </ScrollView>

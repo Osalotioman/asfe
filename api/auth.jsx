@@ -48,9 +48,44 @@ export async function getTimetableData() {
                         { subject: 'Biology', time: '09:00 AM', duration: 40 },
                         { subject: 'Chemistry', time: '11:00 AM', duration: 55 }
                     ]
+                },
+                {
+                    day: 'Wednesday',
+                    classes: [
+                        { subject: 'History', time: '08:00 AM', duration: 40 },
+                        { subject: 'Art', time: '10:00 AM', duration: 45 }
+                    ]
+                },
+                {
+                    day: 'Thursday',
+                    classes: [
+                        { subject: 'Geography', time: '09:00 AM', duration: 50 },
+                        { subject: 'Physics', time: '11:00 AM', duration: 60 }
+                    ]
+                },
+                {
+                    day: 'Friday',
+                    classes: [
+                        { subject: 'Computer Science', time: '08:00 AM', duration: 55 },
+                        { subject: 'Economics', time: '10:00 AM', duration: 45 }
+                    ]
+                },
+                {
+                    day: 'Saturday',
+                    classes: [
+                        { subject: 'Music', time: '09:00 AM', duration: 40 },
+                        { subject: 'Drama', time: '11:00 AM', duration: 50 }
+                    ]
+                },
+                {
+                    day: 'Sunday',
+                    classes: [
+                        { subject: 'Physical Education', time: '08:00 AM', duration: 60 },
+                        { subject: 'Health', time: '10:00 AM', duration: 45 }
+                    ]
                 }
             ]);
-        }, 1000);
+        }, 0);
     });
 }
 
