@@ -22,24 +22,26 @@ export default function UpcomingAttendance() {
         fetchData();
     }, []);
 
+    const handleSignIn = (name) => {
+        console.log(`Signing in for ${name}`);
+    };
+
     if (loading) {
         return (
-            <SafeAreaView>
-                <View style={{ padding: 16 }}>
-                    <Text>Loading attendance data...</Text>
-                </View>
+            <SafeAreaView className="flex-1 bg-gray-50 justify-center items-center">
+                <Text className="text-lg text-gray-600">Loading attendance data...</Text>
                 <StatusBar style="auto" />
             </SafeAreaView>
         );
     }
 
     return (
-        <SafeAreaView>
+        <SafeAreaView className="flex-1 bg-gray-50">
             <ScrollView contentContainerStyle={{ padding: 16 }}>
-                {attendanceData && attendanceData.length > 0 ? (
-                    <AttendanceCards records={attendanceData} />
+                {attendanceData.length > 0 ? (
+                    <AttendanceCards records={attendanceData} onSignIn={handleSignIn} />
                 ) : (
-                    <Text>No upcoming attendance found.</Text>
+                    <Text className="text-center text-gray-500">No upcoming attendance found.</Text>
                 )}
             </ScrollView>
             <StatusBar style="auto" />

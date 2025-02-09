@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, useWindowDimensions } from 'react-native';
 
 const AttendanceCard = ({ name, duration, status, onPress }) => {
+    const { width } = useWindowDimensions();
     return (
-        <View className="bg-white rounded-xl p-5 my-3 w-72 shadow-md">
+        <View style={{ width: width * 0.9 }} className="bg-white rounded-xl p-5 my-3 shadow-md">
             <View className="flex-row justify-between items-center mb-2">
                 <Text className="text-xl font-bold">{name}</Text>
-                <Text className={`text-xs font-semibold px-2 py-1 rounded ${status === 'Ongoing' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'}`}>
+                <Text className={`text-xs font-semibold px-2 py-1 rounded ${status === 'Ongoing' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'}`}> 
                     {status}
                 </Text>
             </View>
