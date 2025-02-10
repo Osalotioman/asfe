@@ -1,7 +1,13 @@
 import { SplashScreen, Stack } from "expo-router";
+import { configureReanimatedLogger, ReanimatedLogLevel } from "react-native-reanimated";
 import "../global.css";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
+
+configureReanimatedLogger({
+    level: ReanimatedLogLevel.warn,
+    strict: false,
+});
 
 SplashScreen.preventAutoHideAsync();
 

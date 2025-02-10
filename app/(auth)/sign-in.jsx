@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView, Image } from 'reac
 import CustomButton from '../../components/CustomButton';
 import FormField from '../../components/FormField';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import image from '../../constants/images';
+import images from '../../constants/images';
 import { useState } from 'react';
 import { Link } from 'expo-router';
 
@@ -18,7 +18,7 @@ const SignIn = () => {
             <ScrollView>
                 <View className="w-full mx-auto justify-center min-h-[85vh] max-w-[600px] px-5 my-6">
                     <Image
-                        source={image.dsars_logo}
+                        source={images.dsars_logo}
                         resizeMode="contain"
                         style={{
                             width: 100,
@@ -31,7 +31,7 @@ const SignIn = () => {
                         placeholder="Enter your email" 
                         label="Email"
                         handleChangeText={(text) => setForm({ ...form, email: text })}
-                        otherStyles="mb-7"
+                        otherStyles="mb-4"
                     />
                     <FormField
                         value={form.password}
@@ -39,7 +39,7 @@ const SignIn = () => {
                         label="Password"
                         secureTextEntry={true}
                         handleChangeText={(text) => setForm({ ...form, password: text })}
-                        otherStyles="mb-7"
+                        otherStyles="mb-4"
                     />
                     <CustomButton
                         title="Sign In"
@@ -47,7 +47,7 @@ const SignIn = () => {
                         isLoading={isSubmitting}
                     />
 
-                    <View className="mt-5 flex flex-row justify-between">
+                    <View className="mt-4 flex flex-row justify-between">
                         <Text className="text-md">Don't have an account?</Text>
                         <Link href="/sign-up">
                             <Text className="text-md text-blue-500">Sign Up</Text>

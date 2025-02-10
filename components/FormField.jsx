@@ -1,4 +1,5 @@
-import { View, Text, TextInput, TouchableOpacity, Picker } from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 

@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image } from 'react-native';
+import { View, Text, ScrollView, Image, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Redirect, router } from 'expo-router';
 import images from "../constants/images";
@@ -40,11 +40,12 @@ export default function App() {
 
                     <CustomButton
                         title='Get Started'
-                        handlePress={() => router.push('/events')}
+                        handlePress={() => router.push('/sign-in')}
                         containerStyles='w-full mt-4'
                         textStyles='font-semibold'
                     />
                 </View>
+                <StatusBar style="dark"/>
             </ScrollView>
         </SafeAreaView>
     )

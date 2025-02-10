@@ -7,7 +7,7 @@ export default function UpcomingAttendance() {
             <View>
                 <Text>UpcomingAttendance</Text>
             </View>
-            <StatusBar style="auto"/>
+            <StatusBar style="dark"/>
         </SafeAreaView>
     );
 }
