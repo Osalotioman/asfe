@@ -16,23 +16,26 @@ export default function FormField({ label, value, placeholder, handleChangeText,
         }`}
       >
         {selectOptions ? (
-          <View className="flex-1 justify-center h-16">
             <Picker
               selectedValue={value}
               onValueChange={(itemValue) => handleChangeText(itemValue)}
+              className="h-full w-full text-black-100 font-inter text-base font-semibold outline-none bg-transparent"
               style={{
                 height: "100%",
                 width: "100%",
                 color: "#333",
                 backgroundColor: "transparent",
                 outline: "none",
+                fontFamily: "Inter",
+                fontWeight: "600",
               }}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
             >
               {selectOptions.map((option) => (
                 <Picker.Item key={option.value} label={option.label} value={option.value} />
               ))}
             </Picker>
-          </View>
         ) : (
           <TextInput
             className="flex-1 text-black-100 font-inter text-base font-semibold outline-none"
