@@ -52,7 +52,16 @@ Attendance System is an initiative by a group of students from the University of
    ```
 
 3. Set up environment variables:  
-   **SKIP**: *NOT YET AVAILABLE*
+   ```bash
+    # 1. Copy the example environment file to create your own .env file
+    cp .example.env .env
+
+    # 2. Open the .env file and fill in the required fields
+    # (e.g., API_URL, API_KEY, etc.)
+
+    # 3. Install project dependencies
+    npm install
+   ```
 
 4. Run the application:
    ```bash
@@ -91,7 +100,7 @@ For any inquiries or feedback, please contact [ighalogenesis2007@gmail.com](igha
 
 
 ## For branching and pull request the following template can be helpful when working from the terminal
-```
+```bash
 # 1. Check status
 git status
 
@@ -106,14 +115,4 @@ git commit -m "Your commit message"
 
 # 5. Push the new branch to GitHub
 git push origin <new-branch-name>
-```
-```
-# 1. Copy the example environment file to create your own .env file
-cp .example.env .env
-
-# 2. Open the .env file and fill in the required fields
-# (e.g., API_URL, API_KEY, etc.)
-
-# 3. Install project dependencies
-npm install
 ```
