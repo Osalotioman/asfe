@@ -1,11 +1,11 @@
-import React, { useState, useRef, useCallback, memo } from 'react';
+import { useState, useCallback, memo } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
 import CustomButton from '../../components/CustomButton';
 import FormField from '../../components/FormField';
 import images from '../../constants/images';
 import { Link } from 'expo-router';
+import FaceScanner from '../../components/FaceScanner';
 
 // Memoized progress bar component
 const ProgressBar = memo(({ step, totalSteps }) => (
@@ -129,77 +129,8 @@ const PasswordStep = memo(({ form, setForm }) => (
   </>
 ));
 
-const FacialScanStep = memo(({ 
-  facialScan, 
-  cameraActive, 
-  cameraRef, 
-  requestCameraPermission, 
-  takePicture,
-  facing,
-  setCameraActive
-}) => {
-  if (cameraActive) {
-    return (
-      <View className="h-96 w-full rounded-lg overflow-hidden">
-        <CameraView
-          ref={cameraRef}
-          className="flex-1"
-          facing={facing}
-        >
-          <View className="flex-1 bg-transparent justify-end items-center pb-8">
-            <TouchableOpacity 
-              className="w-16 h-16 bg-white rounded-full items-center justify-center mb-4"
-              onPress={takePicture}
-            >
-              <View className="w-14 h-14 bg-blue-500 rounded-full" />
-            </TouchableOpacity>
-          </View>
-        </CameraView>
-      </View>
-    );
-  }
-
-  return (
-    <>
-      <Text className="text-xl font-semibold mb-6">Facial Scan</Text>
-      <View className="items-center justify-center p-8 border-2 border-dashed border-gray-300 rounded-lg mb-4">
-        {facialScan ? (
-          <>
-            <Image
-              source={{ uri: facialScan }}
-              className="w-32 h-32 rounded-full"
-            />
-            <TouchableOpacity 
-              className="mt-4 bg-blue-500 px-4 py-2 rounded"
-              onPress={() => setCameraActive(true)}
-            >
-              <Text className="text-white">Retake Photo</Text>
-            </TouchableOpacity>
-          </>
-        ) : (
-          <>
-            <View className="w-16 h-16 bg-gray-200 rounded-full items-center justify-center mb-4">
-              <Text className="text-2xl">📸</Text>
-            </View>
-            <TouchableOpacity 
-              className="mt-4 bg-blue-500 px-4 py-2 rounded"
-              onPress={requestCameraPermission}
-            >
-              <Text className="text-white">Start Facial Scan</Text>
-            </TouchableOpacity>
-          </>
-        )}
-      </View>
-    </>
-  );
-});
-
 const SignUpWizard = () => {
   const [step, setStep] = useState(1);
-  const [facing, setFacing] = useState('front');
-  const [permission, requestPermission] = useCameraPermissions(null);
-  const [cameraActive, setCameraActive] = useState(false);
-  const cameraRef = useRef(null);
   
   // Split form state
   const [personalInfo, setPersonalInfo] = useState({ fullName: "", gender: "" });
@@ -291,14 +222,8 @@ const SignUpWizard = () => {
         return <PasswordStep form={passwordInfo} setForm={setPasswordInfo} />;
       case 5:
         return (
-          <FacialScanStep
-            facialScan={facialInfo.facialScan}
-            cameraActive={cameraActive}
-            cameraRef={cameraRef}
-            requestCameraPermission={requestPermission}
-            takePicture={takePicture}
-            facing={facing}
-            setCameraActive={setCameraActive}
+          <FaceScanner
+            onCapture={(photo) => setFacialInfo(prev => ({ ...prev, facialScan: photo }))}
           />
         );
       default:
