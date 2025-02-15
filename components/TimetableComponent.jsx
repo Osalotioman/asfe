@@ -1,80 +1,65 @@
-import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { useEffect, useRef, memo } from 'react';
+import { View, Text, FlatList, ScrollView } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 
-const screenWidth = Dimensions.get('window').width;
+// Get current day in English format
 const currentDay = new Date().toLocaleDateString('en-US', { weekday: 'long' });
 
+/** ClassItem - Displays a single class */
+const ClassItem = memo(({ cls }) => (
+    <View className="bg-gray-100 rounded-md p-3 mb-2">
+        <Text className="text-lg font-semibold text-gray-900">{cls.subject}</Text>
+        <Text className="text-sm text-gray-600">Time: {cls.time}</Text>
+        <Text className="text-sm text-gray-600">Duration: {cls.duration} mins</Text>
+    </View>
+));
+
+/** DayItem - Displays a day's schedule */
+const DayItem = memo(({ day, isCurrent }) => (
+    <Animatable.View
+        animation={isCurrent ? { 0: {scale: 0.9}, 1: {scale: 1}} : {0: {scale: 1}, 1: {scale: 0.9}}}
+        duration={1000}
+        className={`w-[80vw] max-w-[400px] p-4 bg-white rounded-lg mr-4 shadow-md border-2 ${
+            isCurrent ? 'border-blue-500 bg-blue-400' : 'border-gray-200'
+        }`}
+    >
+        <View
+            className="w-[80vw] max-w-[400px] p-4 bg-white rounded-lg mr"
+        <Text className="text-xl font-bold text-gray-800 mb-3">{day.day}</Text>
+        <FlatList 
+            data={day.classes} 
+            keyExtractor={(cls, index) => index.toString()} 
+            renderItem={({ item }) => <ClassItem cls={item} />}
+        />
+    </Animatable.View>
+));
+
+/** Timetable - Main component */
 const Timetable = ({ schedule }) => {
+    const scrollViewRef = useRef(null);
+    const currentDayIndex = schedule.findIndex(day => day.day === currentDay);
+
+    useEffect(() => {
+        if (scrollViewRef.current && currentDayIndex !== -1) {
+            scrollViewRef.current.scrollTo({ x: currentDayIndex * 320, animated: true });
+        }
+    }, [currentDayIndex]);
+
     return (
-        <ScrollView horizontal style={styles.container} contentContainerStyle={styles.scrollContent}>
-            {schedule.map((day, index) => (
-                <View
-                    key={index}
-                    style={[
-                        styles.dayContainer,
-                        day.day === currentDay && styles.highlightDay,
-                    ]}
-                >
-                    <Text style={styles.dayTitle}>{day.day}</Text>
-                    {day.classes.map((cls, idx) => (
-                        <View key={idx} style={styles.classCard}>
-                            <Text style={styles.subject}>{cls.subject}</Text>
-                            <Text style={styles.info}>Time: {cls.time}</Text>
-                            <Text style={styles.info}>Duration: {cls.duration} mins</Text>
-                        </View>
-                    ))}
-                </View>
-            ))}
+        <ScrollView
+            horizontal
+            className="p-4"
+            ref={scrollViewRef}
+            showsHorizontalScrollIndicator={false}
+        >
+            <FlatList
+                data={schedule}
+                horizontal
+                keyExtractor={(day, index) => index.toString()}
+                renderItem={({ item }) => <DayItem day={item} isCurrent={item.day === currentDay} />}
+            />
         </ScrollView>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#f2f2f2',
-    },
-    scrollContent: {
-        padding: 16,
-    },
-    dayContainer: {
-        width: screenWidth * 0.8,
-        padding: 16,
-        backgroundColor: '#fff',
-        borderRadius: 8,
-        marginRight: 16,
-        boxShadowColor: '#000',
-        boxShadowOffset: { width: 0, height: 2 },
-        boxShadowOpacity: 0.1,
-        boxShadowRadius: 4,
-        elevation: 3,
-    },
-    highlightDay: {
-        borderWidth: 2,
-        borderColor: '#4A90E2',
-        backgroundColor: '#E3F2FD',
-    },
-    dayTitle: {
-        fontSize: 20,
-        fontWeight: '700',
-        color: '#333',
-        marginBottom: 12,
-    },
-    classCard: {
-        backgroundColor: '#f9f9f9',
-        borderRadius: 8,
-        padding: 12,
-        marginBottom: 10,
-    },
-    subject: {
-        fontSize: 18,
-        fontWeight: '600',
-        color: '#222',
-        marginBottom: 4,
-    },
-    info: {
-        fontSize: 14,
-        color: '#555',
-    },
-});
 
 export default Timetable;
