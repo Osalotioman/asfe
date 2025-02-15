@@ -5,22 +5,22 @@ import CustomButton from '../../components/CustomButton';
 import FormField from '../../components/FormField';
 import images from '../../constants/images';
 import { Link } from 'expo-router';
-import FaceScanner from '../../components/FaceScanner';
+import ManualCapture from '../../components/ManualCapture';
 
 // Memoized progress bar component
 const ProgressBar = memo(({ step, totalSteps }) => (
   <View className="w-full mb-8">
-    <View className="h-1 bg-gray-200 rounded-full">
+    <View className="h-1 bg-gray-200 rounded-3xl">
       <View 
-        className="h-full bg-blue-500 rounded-full transition-all"
+        className="h-full bg-blue-500 rounded-3xl transition-all"
         style={{ width: `${(step / totalSteps) * 100}%` }}
       />
     </View>
-    <View className="flex-row justify-between mt-2">
+    <View className="flex-row w-full justify-around absolute top-[-16px]">
       {[...Array(totalSteps)].map((_, index) => (
         <View 
           key={index}
-          className={`w-8 h-8 rounded-full flex items-center justify-center
+          className={`w-8 h-8 rounded-full border-4 p-4 border-white flex items-center justify-center
             ${step > index ? 'bg-blue-500' : 'bg-gray-200'}`}
         >
           <Text className={step > index ? 'text-white' : 'text-gray-600'}>
@@ -165,10 +165,10 @@ const SignUpWizard = () => {
       () => passwordInfo.password && passwordInfo.confirmPassword && validatePasswordMatch()
     ];
 
-    if (step <= stepsValidation.length && !stepsValidation[step - 1]()) {
-      Alert.alert('Please fill in all required fields');
-      return;
-    }
+    // if (step <= stepsValidation.length && !stepsValidation[step - 1]()) {
+    //   Alert.alert('Please fill in all required fields');
+    //   return;
+    // }
 
     if (step < 5) {
       setStep(prev => prev + 1);
@@ -191,18 +191,6 @@ const SignUpWizard = () => {
     }
   }, [step]);
 
-  const takePicture = useCallback(async () => {
-    if (cameraRef.current) {
-      try {
-        const photo = await cameraRef.current.takePictureAsync();
-        setFacialInfo(prev => ({ ...prev, facialScan: photo.uri }));
-        setCameraActive(false);
-      } catch (error) {
-        Alert.alert('Error taking picture', error.message);
-      }
-    }
-  }, []);
-
   // Render current step
   const renderCurrentStep = useCallback(() => {
     switch(step) {
@@ -222,7 +210,7 @@ const SignUpWizard = () => {
         return <PasswordStep form={passwordInfo} setForm={setPasswordInfo} />;
       case 5:
         return (
-          <FaceScanner
+          <ManualCapture
             onCapture={(photo) => setFacialInfo(prev => ({ ...prev, facialScan: photo }))}
           />
         );
@@ -236,7 +224,6 @@ const SignUpWizard = () => {
     authInfo, 
     passwordInfo, 
     facialInfo,
-    cameraActive,
     validateEmail
   ]);
 
