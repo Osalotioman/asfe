@@ -2,7 +2,6 @@ import { useEffect, useRef, memo } from 'react';
 import { View, Text, FlatList, ScrollView } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
-// Get current day in English format
 const currentDay = new Date().toLocaleDateString('en-US', { weekday: 'long' });
 
 /** ClassItem - Displays a single class */
@@ -17,18 +16,16 @@ const ClassItem = memo(({ cls }) => (
 /** DayItem - Displays a day's schedule */
 const DayItem = memo(({ day, isCurrent }) => (
     <Animatable.View
-        animation={isCurrent ? { 0: {scale: 0.9}, 1: {scale: 1}} : {0: {scale: 1}, 1: {scale: 0.9}}}
+        animation={isCurrent ? { 0: { scale: 0.9 }, 1: { scale: 1 } } : { 0: { scale: 1 }, 1: { scale: 0.9 } }}
         duration={1000}
         className={`w-[80vw] max-w-[400px] p-4 bg-white rounded-lg mr-4 shadow-md border-2 ${
             isCurrent ? 'border-blue-500 bg-blue-400' : 'border-gray-200'
         }`}
     >
-        <View
-            className="w-[80vw] max-w-[400px] p-4 bg-white rounded-lg mr"
         <Text className="text-xl font-bold text-gray-800 mb-3">{day.day}</Text>
         <FlatList 
             data={day.classes} 
-            keyExtractor={(cls, index) => index.toString()} 
+            keyExtractor={(_, index) => index.toString()} 
             renderItem={({ item }) => <ClassItem cls={item} />}
         />
     </Animatable.View>
@@ -46,18 +43,10 @@ const Timetable = ({ schedule }) => {
     }, [currentDayIndex]);
 
     return (
-        <ScrollView
-            horizontal
-            className="p-4"
-            ref={scrollViewRef}
-            showsHorizontalScrollIndicator={false}
-        >
-            <FlatList
-                data={schedule}
-                horizontal
-                keyExtractor={(day, index) => index.toString()}
-                renderItem={({ item }) => <DayItem day={item} isCurrent={item.day === currentDay} />}
-            />
+        <ScrollView horizontal className="p-4" ref={scrollViewRef} showsHorizontalScrollIndicator={false}>
+            {schedule.map((day, index) => (
+                <DayItem key={index.toString()} day={day} isCurrent={day.day === currentDay} />
+            ))}
         </ScrollView>
     );
 };
