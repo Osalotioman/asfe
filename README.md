@@ -99,20 +99,94 @@ This project is licensed under the GNU General Public License (GPL v3).
 For any inquiries or feedback, please contact [ighalogenesis2007@gmail.com](ighalogenesis2007@gmail.com).
 
 
-## For branching and pull request the following template can be helpful when working from the terminal
-```bash
-# 1. Check status
-git status
+# **How to Push Changes to a Protected `main` Branch**
 
-# 2. Create and switch to a new branch
-git checkout -b <new-branch-name>
+When the `main` branch is protected, you cannot push directly to it. Instead, follow these steps to create a new branch, push your changes, and create a pull request (PR).
 
-# 3. Stage all changes
-git add .
+---
 
-# 4. Commit the changes
-git commit -m "Your commit message"
+## **Step 1: Create a New Branch**
 
-# 5. Push the new branch to GitHub
-git push origin <new-branch-name>
-```
+1. **Switch to the `main` branch** (if you’re not already on it):
+   ```bash
+   git checkout main
+   ```
+
+2. **Pull the latest changes** from the remote `main` branch:
+   ```bash
+   git pull origin main
+   ```
+
+3. **Create a new branch** for your changes:
+   ```bash
+   git checkout -b your-branch-name
+   ```
+   Replace `your-branch-name` with a descriptive name (e.g., `feature/add-login` or `bugfix/fix-typo`).
+
+---
+
+## **Step 2: Make and Commit Your Changes**
+
+1. Make your changes to the code in the new branch.
+
+2. **Stage your changes**:
+   ```bash
+   git add .
+   ```
+   Or stage specific files:
+   ```bash
+   git add file1.txt file2.txt
+   ```
+
+3. **Commit your changes** with a clear message:
+   ```bash
+   git commit -m "Your commit message"
+   ```
+
+---
+
+## **Step 3: Push Your Branch to GitHub**
+
+1. Push your new branch to the remote repository:
+   ```bash
+   git push origin your-branch-name
+   ```
+
+---
+
+## **Step 4: Create a Pull Request**
+
+1. Go to your repository on GitHub.
+
+2. You’ll see a notification at the top of the repository page suggesting you create a pull request for the branch you just pushed. Click **"Compare & pull request"**.
+
+3. Fill in the PR details:
+   - **Title**: Summarize the changes.
+   - **Description**: Provide details about what the changes do and why they’re necessary.
+
+4. Click **"Create pull request"**.
+
+---
+
+## **Step 5: Wait for Review and Merge**
+
+- If your repository has branch protection rules (e.g., requiring reviews or passing CI checks), your PR will need to meet those requirements before it can be merged.
+- Once the PR is approved and all checks pass, a repository maintainer can merge your changes into the `main` branch.
+
+---
+
+## **Pro Tips**
+
+- **Branch Naming**: Use descriptive names for your branches (e.g., `feature/add-login`, `bugfix/fix-typo`, `docs/update-readme`).
+- **Frequent Updates**: If the `main` branch changes while you’re working on your branch, sync your branch with `main`:
+  ```bash
+  git checkout main
+  git pull origin main
+  git checkout your-branch-name
+  git merge main
+  ```
+- **Small PRs**: Keep your pull requests small and focused. This makes them easier to review and merge.
+
+---
+
+By following this algorithm, you can safely push changes to a new branch and create a pull request, even when the `main` branch is protected. 🚀

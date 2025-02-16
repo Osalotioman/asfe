@@ -2,7 +2,6 @@ import { useEffect, useRef, memo } from 'react';
 import { View, Text, FlatList, ScrollView } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
-// Get current day in English format
 const currentDay = new Date().toLocaleDateString('en-US', { weekday: 'long' });
 
 /** ClassItem - Displays a single class */
@@ -65,3 +64,4 @@ const Timetable = ({ schedule }) => {
 };
 
 export default Timetable;
+

@@ -89,47 +89,11 @@ export async function getTimetableData() {
     });
 }
 
-export async function getTimetableData1() {
+export async function signIn(data) {
     // Simulate a dummy API call with a delay
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve([
-                {
-                    id: '1',
-                    subject: 'Mathematics',
-                    day: 'Monday',
-                    time: '08:00 - 09:30',
-                    lecturer: 'Prof. Johnson'
-                },
-                {
-                    id: '2',
-                    subject: 'Physics',
-                    day: 'Tuesday',
-                    time: '10:00 - 11:30',
-                    lecturer: 'Dr. Smith'
-                },
-                {
-                    id: '3',
-                    subject: 'Chemistry',
-                    day: 'Wednesday',
-                    time: '12:00 - 13:30',
-                    lecturer: 'Dr. Williams'
-                },
-                {
-                    id: '4',
-                    subject: 'Biology',
-                    day: 'Thursday',
-                    time: '14:00 - 15:30',
-                    lecturer: 'Dr. Brown'
-                },
-                {
-                    id: '5',
-                    subject: 'Computer Science',
-                    day: 'Friday',
-                    time: '09:00 - 10:30',
-                    lecturer: 'Prof. Davis'
-                }
-            ]);
+            resolve({"status": "success", "message": "Sign in successful"});
         }, 1000);
     });
 }

@@ -6,12 +6,33 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import images from '../../constants/images';
 import { useState } from 'react';
 import { Link } from 'expo-router';
+import { signIn } from '../../api/auth';
+import { router } from 'expo-router';
 
 const SignIn = () => {
     const [form, setForm] = useState({ email: "", password: "" });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const submitForm = () => {};
+    const submitForm = () => {
+
+        setIsSubmitting(true);
+
+        signIn(form)
+            .then((response) => {
+                if(response.status === "success") {
+                    router.replace('/events');
+                }else{
+                    console.log(response);
+                    alert(response.messsage)
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                setIsSubmitting(false);
+            });
+    };
 
     return (
         <SafeAreaView className="bg-white h-full">
