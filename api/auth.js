@@ -1,7 +1,28 @@
-import { API_URL, API_KEY } from '@env';
+import { API_BASE_URL_ASBE, API_KEY } from '@env';
 
-//console.log(API_URL);
-
+export async function signIn(formData) {
+    const fd = new FormData();
+    const action = "signIn";
+    //fd.append('API_KEY', API_KEY);
+    fd.append('email', formData['email']);
+    fd.append('password', formData['password']);
+  
+    try {
+      const response = await fetch(`${API_BASE_URL_ASBE+action}`, {
+        method: 'POST',
+        //credentials: "include",
+        body: fd, 
+      });
+      const data = await response.json();
+      alert(data.message);
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.error('Sign-in error:', error);
+      throw error;
+    }
+};
+//Dummy functions still in use
 export async function getAttendanceData() {
     // Simulate a dummy API call with a delay
     return new Promise((resolve) => {
@@ -89,7 +110,8 @@ export async function getTimetableData() {
     });
 }
 
-export async function signIn(data) {
+//Dummy function no longer in use
+export async function signIn1(data) {
     // Simulate a dummy API call with a delay
     return new Promise((resolve) => {
         setTimeout(() => {
