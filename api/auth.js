@@ -8,7 +8,7 @@ export async function signIn(formData) {
     fd.append('password', formData['password']);
   
     try {
-      const response = await fetch(`${API_BASE_URL_ASBE+action}`, {
+      const response = await fetch(`${API_BASE_URL_ASBE}/${action}`, {
         method: 'POST',
         //credentials: "include",
         body: fd, 
