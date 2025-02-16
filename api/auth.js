@@ -2,13 +2,12 @@ import { API_BASE_URL_ASBE, API_KEY } from '@env';
 
 export async function signIn(formData) {
     const fd = new FormData();
-    const action = "signIn";
+    const action = "sign_in";
     //fd.append('API_KEY', API_KEY);
     fd.append('email', formData['email']);
     fd.append('password', formData['password']);
   
     try {
-        //alert(API_BASE_URL_ASBE);
       const response = await fetch(`${API_BASE_URL_ASBE}/${action}`, {
         method: 'POST',
         //credentials: "include",
