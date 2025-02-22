@@ -24,7 +24,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           REPO_OWNER=${{ github.repository_owner }}
-          if [[ "$LAST_COMMIT_AUTHOR" != "$REPO_OWNER@users.noreply.github.com" && "$LAST_COMMIT_AUTHOR" != "github-actions[bot]@users.noreply.github.com" ]]; then
+          COMMITTER_USERNAME=$(echo "$LAST_COMMIT_AUTHOR" | sed -E 's/^(.*)@.*/\1/')
+          if [[ "$COMMITTER_USERNAME" != "$REPO_OWNER" && "$COMMITTER_USERNAME" != "github-actions[bot]" ]]; then
             git config --global user.name "github-actions[bot]"
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
             git commit --allow-empty -m "chore: empty commit to track external contributor"
