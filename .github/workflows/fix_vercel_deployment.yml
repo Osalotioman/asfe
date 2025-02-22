@@ -1,0 +1,38 @@
+name: Add Empty Commit if External Contributor
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get last commit author
+        id: get-author
+        run: |
+          AUTHOR=$(git log -1 --pretty=format:'%ae')
+          echo "LAST_COMMIT_AUTHOR=$AUTHOR" >> $GITHUB_ENV
+
+      - name: Add empty commit if not owner
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPO_OWNER=${{ github.repository_owner }}
+          if [[ "$LAST_COMMIT_AUTHOR" != "$REPO_OWNER@users.noreply.github.com" && "$LAST_COMMIT_AUTHOR" != "github-actions[bot]@users.noreply.github.com" ]]; then
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git commit --allow-empty -m "chore: empty commit to track external contributor"
+            git push
+          else
+            echo "No action needed. Commit was from the repo owner or the bot itself."
+
+    permissions:
+      contents: write
+      actions: read
+      repository-projects: read
