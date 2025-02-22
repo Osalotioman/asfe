@@ -1,5 +1,5 @@
 
-# Welcome to Attendance System  
+# Welcome to Attendance System Front-end Repo 
 
 ## Introduction  
 Attendance System is an initiative by a group of students from the University of Benin. It was born out of the need to make attendance records meaningful and reliable. The system provides a dynamic and secure way for lecturers to manage attendance efficiently while reducing the chances of unauthorized sign-ins.  
