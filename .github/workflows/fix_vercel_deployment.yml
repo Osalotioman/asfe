@@ -29,7 +29,7 @@ jobs:
             if (committerUsername !== repoOwner && committerUsername !== 'github-actions[bot]') {
               await exec.exec('git config --global user.name "github-actions[bot]"');
               await exec.exec('git config --global user.email "github-actions[bot]@users.noreply.github.com"');
-              await exec.exec('git commit --allow-empty -m "chore: empty commit to track external contributor"');
+              await exec.exec('git commit --allow-empty -m "chore: empty commit to enable vercel deployment by external contributor"');
               await exec.exec('git push');
             } else {
               console.log("No action needed. Commit was from the repo owner or the bot itself.");
