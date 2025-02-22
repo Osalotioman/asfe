@@ -59,7 +59,7 @@ export default function MyTabBar({ state, descriptors, navigation}) {
               style={styles.tabItem}
             >
               { icons[route.name]({ color: isFocused ? '#007bff' : '#ddd' }) }
-              <Text style={{ color: isFocused ? '#007bff' : '#ddd' }}>
+              <Text style={{ fontFamily: "Inter", color: isFocused ? '#007bff' : '#ddd' }}>
                 {label}
               </Text>
             </PlatformPressable>
