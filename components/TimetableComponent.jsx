@@ -1,15 +1,16 @@
 import { useEffect, useRef, memo } from 'react';
-import { View, Text, FlatList, ScrollView } from 'react-native';
+import { View, Text, FlatList, Dimensions, ScrollView } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 const currentDay = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+const dayCardWidth = Math.min(Dimensions.get('window').width * 0.8, 400);
 
 /** ClassItem - Displays a single class */
 const ClassItem = memo(({ cls }) => (
     <View className="bg-gray-100 rounded-md p-3 mb-2">
-        <Text className="text-lg font-semibold text-gray-900">{cls.subject}</Text>
-        <Text className="text-sm text-gray-600">Time: {cls.time}</Text>
-        <Text className="text-sm text-gray-600">Duration: {cls.duration} mins</Text>
+        <Text className="text-lg font-semibold text-gray-900 font-inter">{cls.subject}</Text>
+        <Text className="text-sm text-gray-600 font-inter">Time: {cls.time}</Text>
+        <Text className="text-sm text-gray-600 font-inter">Duration: {cls.duration} mins</Text>
     </View>
 ));
 
@@ -21,15 +22,16 @@ const DayItem = memo(({ day, isCurrent }) => (
         className="mr-4"
     >
         <View
-            className={`w-[80vw] max-w-[400px] p-4 bg-white rounded-lg shadow-md border-2 ${
-                isCurrent ? 'border-blue-500 bg-blue-400' : 'border-gray-200'
+            className={`w-[80vw] max-w-[400px] p-4 h-[400px] rounded-lg shadow-sm ${
+                isCurrent ? 'bg-blue-200' : 'bg-white'
             }`}
         >
-            <Text className="text-xl font-bold text-gray-800 mb-3">{day.day}</Text>
+            <Text className="text-2xl font-bold text-gray-800 mb-3 font-inter">{day.day}</Text>
             <FlatList 
                 data={day.classes} 
                 keyExtractor={(cls, index) => index.toString()} 
                 renderItem={({ item }) => <ClassItem cls={item} />}
+                nestedScrollEnabled
             />
         </View>
     </Animatable.View>
@@ -37,31 +39,32 @@ const DayItem = memo(({ day, isCurrent }) => (
 
 /** Timetable - Main component */
 const Timetable = ({ schedule }) => {
-    const scrollViewRef = useRef(null);
+    const flatListRef = useRef(null);
     const currentDayIndex = schedule.findIndex(day => day.day === currentDay);
 
     useEffect(() => {
-        if (scrollViewRef.current && currentDayIndex !== -1) {
-            scrollViewRef.current.scrollTo({ x: currentDayIndex * 320, animated: true });
+        if (flatListRef.current && currentDayIndex !== -1) {
+            flatListRef.current.scrollToIndex({ index: currentDayIndex, animated: true });
         }
     }, [currentDayIndex]);
 
     return (
-        <ScrollView
+        <FlatList
+            className=" border-2 border-blue-500 flex-grow"
+            ref={flatListRef}
+            data={schedule}
+            keyExtractor={(day, index) => index.toString()}
+            renderItem={({ item }) => <DayItem day={item} isCurrent={item.day === currentDay} />}
             horizontal
-            className="p-4"
-            ref={scrollViewRef}
-            showsHorizontalScrollIndicator={false}
-        >
-            <FlatList
-                data={schedule}
-                horizontal
-                keyExtractor={(day, index) => index.toString()}
-                renderItem={({ item }) => <DayItem day={item} isCurrent={item.day === currentDay} />}
-            />
-        </ScrollView>
+            nestedScrollEnabled={true}  // Enable scrolling inside parent list
+            keyboardShouldPersistTaps="handled"
+            showsHorizontalScrollIndicator={false} 
+            contentContainerStyle={{ flexGrow: 1 }} // Allow full scrolling space
+            scrollEnabled={true} // Ensure scroll is allowed
+            initialScrollIndex={0}
+            getItemLayout={(data, index) => ({ length: dayCardWidth, offset: dayCardWidth * index, index })}
+        />
     );
 };
-
 export default Timetable;
 
