@@ -20,18 +20,22 @@ jobs:
           echo "LAST_COMMIT_AUTHOR=$AUTHOR" >> $GITHUB_ENV
 
       - name: Add empty commit if not owner
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const lastCommitAuthor = process.env.LAST_COMMIT_AUTHOR;
+            const repoOwner = '${{ github.repository_owner }}';
+            const committerUsername = lastCommitAuthor.split('@')[0];
+            if (committerUsername !== repoOwner && committerUsername !== 'github-actions[bot]') {
+              await exec.exec('git config --global user.name "github-actions[bot]"');
+              await exec.exec('git config --global user.email "github-actions[bot]@users.noreply.github.com"');
+              await exec.exec('git commit --allow-empty -m "chore: empty commit to track external contributor"');
+              await exec.exec('git push');
+            } else {
+              console.log("No action needed. Commit was from the repo owner or the bot itself.");
+            }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          REPO_OWNER=${{ github.repository_owner }}
-          COMMITTER_USERNAME=$(echo "$LAST_COMMIT_AUTHOR" | sed -E 's/^(.*)@.*/\1/')
-          if [[ "$COMMITTER_USERNAME" != "$REPO_OWNER" && "$COMMITTER_USERNAME" != "github-actions[bot]" ]]; then
-            git config --global user.name "github-actions[bot]"
-            git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            git commit --allow-empty -m "chore: empty commit to track external contributor"
-            git push
-          else
-            echo "No action needed. Commit was from the repo owner or the bot itself."
 
     permissions:
       contents: write
